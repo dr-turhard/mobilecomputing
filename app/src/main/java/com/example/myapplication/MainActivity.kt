@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import com.example.myapplication.screens.MenuView
+import com.example.myapplication.screens.ConversationView
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.clickable
@@ -70,43 +72,6 @@ fun Main(){
         ){
             composable("menu"){ MenuView(navController) }
             composable("conversation"){ ConversationView(navController) }
-        }
-    }
-}
-
-@Composable
-fun MenuView(navController: NavHostController){
-    Surface(modifier = Modifier.fillMaxSize()){
-        Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
-        ) {
-            Text(text = "Conversation view", style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { navController.navigate("conversation") }) {
-                Text("Go view a fun conversation!")
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            //This displays the conversation view from Homework 1
-            Conversation(SampleData.conversationSample)
-        }
-    }
-}
-
-@Composable
-fun ConversationView(navController: NavHostController){
-    Surface(modifier = Modifier.fillMaxSize()){
-        Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
-        ){
-            Text(text = "Menu view", style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { navController.popBackStack() }) {
-                Text("Return to previous view")
-            }
         }
     }
 }
