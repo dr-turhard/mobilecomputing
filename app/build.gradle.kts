@@ -47,6 +47,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.work.runtime.ktx)
     val room_version = "2.6.1"
 
     val nav_version = "2.8.5"

@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.Manifest
+import android.content.pm.PackageManager
 import com.example.myapplication.screens.MenuView
 import com.example.myapplication.screens.ConversationView
 import androidx.compose.runtime.getValue
@@ -10,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.provider.Telephony.Sms.Conversations
 import androidx.activity.ComponentActivity
@@ -46,6 +49,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -56,10 +61,24 @@ import com.example.myapplication.screens.ProfileView
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import kotlinx.coroutines.launch
 import java.io.File
+import com.example.myapplication.notifications.Notifications
+import com.example.myapplication.notifications.SensorListener
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //Ask for permission to send notifications
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 1
+                )
+            }
+        }
+        Notifications.createNotificationChannel(this)
+        SensorListener(this)
         setContent {
             MaterialTheme {
                 Main()
@@ -67,6 +86,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 
 @Composable
 fun Main(){
@@ -90,6 +110,7 @@ fun Main(){
         }
     }
 
+
     Scaffold { innerPadding ->
         NavHost(
             navController = navController,
@@ -101,6 +122,18 @@ fun Main(){
             composable("conversation") { ConversationView(navController) }
         }
     }
+    /*  This was used to display a notification button for testing
+    Column(
+        modifier = Modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
+    ) {
+        Button(onClick = { Notifications.triggerNotification(context) }) {
+            Text("Trigger Notification")
+        }
+    }
+
+     */
 }
 
 data class Message(val author: String, val body: String, val imageUri: String?)

@@ -4,7 +4,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_profile")
 data class UserProfile(
-    @PrimaryKey val id: Int = 1,  // Single row, always ID = 1
+    @PrimaryKey val id: Int = 1,  // Single row, ID always one now
     val name: String,
     val imagePath: String
 )
