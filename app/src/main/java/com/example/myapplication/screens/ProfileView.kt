@@ -15,9 +15,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
-import com.example.myapplication.DataStoreManager
 import com.example.myapplication.data.AppDatabase
-import com.example.myapplication.data.UserProfile
+import com.example.myapplication.data.user.UserProfile
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream

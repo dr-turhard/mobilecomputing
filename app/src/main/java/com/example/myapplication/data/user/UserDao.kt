@@ -1,4 +1,4 @@
-package com.example.myapplication.data
+package com.example.myapplication.data.user
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
