@@ -25,6 +25,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -35,26 +36,6 @@ import com.example.myapplication.data.AppDatabase
 import com.example.myapplication.data.message.Message
 import kotlinx.coroutines.launch
 
-
-/*
-@Composable
-fun ConversationView(navController: NavHostController){
-    Surface(modifier = Modifier.fillMaxSize()){
-        Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
-        ){
-            Text(text = "Menu view", style = MaterialTheme.typography.headlineMedium)
-            Spacer(modifier = Modifier.height(16.dp))
-            Button(onClick = { navController.popBackStack() }) {
-                Text("Return to previous view")
-            }
-        }
-    }
-}
-
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConversationView(navController: NavHostController) {
@@ -115,12 +96,13 @@ fun ConversationView(navController: NavHostController) {
                         .fillMaxWidth()
                         .padding(8.dp)
                 ) {
-                    BasicTextField(
+                    OutlinedTextField(
                         value = newMessage,
                         onValueChange = { newMessage = it },
                         modifier = Modifier
                             .weight(1f)
-                            .padding(8.dp)
+                            .padding(8.dp),
+                        singleLine = true
                     )
 
                     IconButton(
