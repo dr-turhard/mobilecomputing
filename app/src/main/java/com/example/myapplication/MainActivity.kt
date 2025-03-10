@@ -68,6 +68,14 @@ class MainActivity : ComponentActivity() {
         }
         Notifications.createNotificationChannel(this)
         SensorListener(this)
+        //Asks for camera permission
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(Manifest.permission.CAMERA), 1
+            )
+        }
         setContent {
             MaterialTheme {
                 Main()
@@ -128,11 +136,11 @@ fun Main(){
 //data class Message(val author: String, val body: String, val imageUri: String?)
 
 @Composable
-fun MessageCard(msg: com.example.myapplication.data.message.Message){
+fun MessageCard(msg: Message, userImagePath: String?){
     Row(modifier = Modifier.padding(all = 8.dp)) {
-        if(msg.imageUri != null){
+        if(userImagePath != null){
             AsyncImage(
-                model = msg.imageUri,
+                model = File(userImagePath),
                 contentDescription = "Profile picture",
                 modifier = Modifier
                     // set image size
@@ -189,7 +197,7 @@ fun MessageCard(msg: com.example.myapplication.data.message.Message){
 }
 
 
-
+/*
 @Composable
 fun Conversation(messages: List<Message>){
     LazyColumn {
@@ -198,6 +206,8 @@ fun Conversation(messages: List<Message>){
         }
     }
 }
+*/
+
 /*@Preview
 @Composable
 fun PreviewConversation() {

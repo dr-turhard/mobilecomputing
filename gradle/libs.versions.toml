@@ -1,5 +1,7 @@
 [versions]
+activityComposeVersion = "1.7.2"
 agp = "8.7.3"
+cameraCore = "1.4.1"
 coilCompose = "3.1.0"
 datastorePreferences = "1.1.2"
 kotlin = "2.0.0"
@@ -16,6 +18,11 @@ navigationCompose = "2.8.5"
 workRuntimeKtx = "2.10.0"
 
 [libraries]
+androidx-activity-compose-v172 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraCore" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraCore" }
+androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraCore" }
+androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraCore" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }

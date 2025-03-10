@@ -10,7 +10,7 @@ import com.example.myapplication.data.message.MessageDao
 import com.example.myapplication.data.user.UserDao
 import com.example.myapplication.data.user.UserProfile
 
-@Database(entities = [UserProfile::class, Message::class], version = 2)
+@Database(entities = [UserProfile::class, Message::class], version = 3)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao         //User data access object
     abstract fun messageDao(): MessageDao   //Message data access object

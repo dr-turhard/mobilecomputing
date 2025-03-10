@@ -8,6 +8,5 @@ data class Message (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val sender: String,
     val content: String,
-    val imageUri: String? = null,
     val timestamp: Long = System.currentTimeMillis()
 )

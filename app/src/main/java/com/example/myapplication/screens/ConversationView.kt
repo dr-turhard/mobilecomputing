@@ -107,7 +107,7 @@ fun ConversationView(navController: NavHostController) {
                     modifier = Modifier.weight(1f)
                 ) {
                     items(messages) { message ->
-                        MessageCard(message)
+                        MessageCard(message, userImagePath)
                     }
                 }
                 Row(
